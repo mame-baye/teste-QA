@@ -41,3 +41,29 @@ Verifier Email Invalide
 
 Verifier Connexion Reussie
     Page Should Contain    Customers
+
+Creer Un Nouvel Utilisateur
+    Click Link    New Customer
+
+    ${timestamp}=    Get Time    epoch
+
+    Input Text    id=EmailAddress    robot${timestamp}@test.com
+    Input Text    id=FirstName       pas
+    Input Text    id=LastName        tout
+    Input Text    id=City            Dakar
+
+    Select From List By Label
+    ...    id=StateOrRegion
+    ...    Texas
+
+    Select Radio Button    gender    male
+
+    Wait Until Element Is Visible    xpath=//button[@type='submit']
+    Wait Until Element Is Enabled    xpath=//button[@type='submit']
+
+    Scroll Element Into View         xpath=//button[@type='submit']
+    Sleep    1s
+
+    Click Element    xpath=//button[@type='submit']
+
+    Log To Console    [SUCCES] Utilisateur créé avec succès
